@@ -94,11 +94,11 @@ void colourChange(void)
     for (i=0; i<pos; i++) 
       ws2812_sendarray((uint8_t *)&ledArray[0],3);			// Repeatedly send "Green" to the led string. 
 
-    for (i=0; i<(7-pos); i++) 
+    for (i=0; i<(6-pos); i++) 
       ws2812_sendarray((uint8_t *)&ledArray[1],3);			// Red
     
     pos+=direction;		
-    if ((pos==7)||(pos==0)) direction=-direction;
+    if ((pos==6)||(pos==0)) direction=-direction;
 
     flashSince1 += flashWaitTime1;
     }
