@@ -120,8 +120,9 @@ void colourChange(void)
   if (buttonPushCounter == 1) 
   {
 
-    if (millis() >= rainbowSince)
+    if (millis() - rainbowSince >= rainbowWaitTime)
     {
+    rainbowSince = millis();
 
     // Rainbow leds
     led[0].r=rgbRed;led[0].g=rgbGreen;led[0].b=rgbBlue;
@@ -167,15 +168,15 @@ void colourChange(void)
       }
     }
 
-    rainbowSince += rainbowWaitTime;
     }
   }
 
   if (buttonPushCounter == 2) 
   {
 
-    if (millis() >= rainbowChaseSince)
+    if (millis() - rainbowChaseSince >= rainbowChaseWaitTime)
     {
+    rainbowChaseSince = millis();
 
       led[ledNum].r=changeRed;led[ledNum].g=changeGreen;led[ledNum].b=changeBlue; // Rainbow colours
       ws2812_setleds(led,ledNum+1); // Set the led number
@@ -234,7 +235,6 @@ void colourChange(void)
         changeGreen = 128;
       }
 
-    rainbowChaseSince += rainbowChaseWaitTime; // Add time to the wait time
     }
   }
 
@@ -242,8 +242,9 @@ void colourChange(void)
   if (buttonPushCounter == 3) 
   {
 
-    if (millis() >= pulseSince1)
+    if (millis() - pulseSince1 >= pulseWaitTime)
     {
+    pulseSince1 = millis();
 
       ledPulse[0].r=pulseRed;ledPulse[0].g=pulseGreen;ledPulse[0].b=pulseBlue; // White
       ws2812_setleds(ledPulse,1);
@@ -282,15 +283,15 @@ void colourChange(void)
           pulse = 0;
         }
 
-      pulseSince1 += pulseWaitTime;
     }
   }
 
   if (buttonPushCounter == 4) 
   {
 
-    if (millis() >= passSince1)
+    if (millis() - passSince1 >= passWaitTime)
     {
+    passSince1 = millis();
 
       passLed[passGreen].r=00;passLed[passGreen].g=255;passLed[passGreen].b=00; // Green
       ws2812_setleds(passLed,passGreen+1); // Led 2
@@ -346,7 +347,6 @@ void colourChange(void)
         passWhite = 0;
       }
 
-    passSince1 += passWaitTime;
     }
   }
 } 
